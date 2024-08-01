@@ -4,6 +4,7 @@ from utils.db import session, User
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from utils.db import session, create_user, login_user
+from utils.db import patient_info
 load_dotenv()
 UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'csv'}
@@ -64,7 +65,7 @@ def signup_post():
         if res['message']['status']==200:
             resp = make_response("setting session cookie")
             resp.set_cookie('session', res['session']["user"])
-            return redirect(url_for('appfunc'))
+            return redirect(url_for('profile'))
 
         else:
             return redirect(url_for('signup'))
@@ -101,12 +102,36 @@ def fileupload():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('appfunc'))
+            
+            return redirect(url_for('profile'))
         
         if file and not allowed_file(file.filename):
             flash('Invalid file type')
             return "Invalid file type"
         
+@app.route('/app/profileupdate', methods=['GET', "POST"])
+def updateprofile():
+    return render_template('profileupdate.html')
+
+@app.route('/app/profileupdate', methods=['POST'])
+def profileupdate():
+    if request.method=='POST':
+        name = request.form.get('name')
+        age = request.form.get('age')
+        blood_type = request.form.get('blood_type')
+        allergies = request.form.get('allergies')
+        weight = request.form.get('weight')
+        height = request.form.get('height')
+        user_id = request.cookies.get('session')
+        res = patient_info(session, name, age, blood_type, allergies, weight, height, user_id)
+        print(res)
+        
+
 @app.route('/app/profile', methods=['GET'])
 def profile():
     return render_template('profile.html')
+
+
+@app.route("/callambu", methods=["POST"])
+def call_ambu():
+    return "Ambulance called"

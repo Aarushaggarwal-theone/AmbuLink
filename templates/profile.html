@@ -4,41 +4,41 @@
   <h1>{% block title %}DASHBOARD{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-<section class="m-auto mt-5 text-center p-5 border w-fit">
+<section class="m-auto mt-5 text-center p-5 px-12 border w-2/5 h-full">
     <h1 class="text-2xl">Medical Information Form</h1>
-    <form action="/submit" class="text-left w-fit m-auto" method="post">
+    <form class="text-left w-parent m-auto" method="post">
         <div>
             <label for="full_name">Full Name:</label><br>
-            <input type="text" id="full_name" name="full_name" class="border px-4 py-2 rounded-lg mt-2"placeholder="Enter your full name">
+           
         </div>
         <br>
         <div>
             <label for="age">Age:</label><br>
-            <input type="text" id="age" name="age" class="border px-4 py-2 rounded-lg mt-2" placeholder="Enter your age">
+            
         </div>
         <br>
         <div>
             <label for="allergies">Medical Allergies:</label><br>
-            <textarea id="allergies" class="border px-4 py-2 rounded-lg mt-2" name="allergies" rows="4" cols="50" placeholder="List any medical allergies..."></textarea>
+           
         </div>
         <br>
         <div>
             <label for="blood-type">Blood Type:</label><br>
-            <input type="text" id="blood-type" class="border px-4 py-2 rounded-lg mt-2" name="blood-type" placeholder="Enter your blood type">
+         
         </div>
         <br>
         <div>
             <label for="height">Height (cm): </label><br>
-            <input type="text" id="height" name="height" class="border px-4 py-2 rounded-lg mt-2 "placeholder="Enter your height">
+          
         </div>
         <br>
         <div>
             <label for="weight">Weight (kg): </label><br>
-            <input type="text"  class="border px-4 py-2 rounded-lg mt-2 "id="weight" name="weight" placeholder="Enter your weight">
+        
         </div>
         <br>
-        <div>
-            <button type="submit" class="text-white bg-red-500 rounded-lg hover:bg-red-700 px-5 py-3 text-[1.2rem]">Submit</button>
+        <div class=>
+            <button class="text-white bg-red-500 rounded-lg ml-48 hover:bg-red-700 px-5 py-3 text-[1.2rem]"><a href="/app/profileupdate">Update Profile </a></button>
         </div>
     </form>
 </section>

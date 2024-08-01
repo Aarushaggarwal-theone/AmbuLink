@@ -58,6 +58,14 @@ class Ambulance(Base):
     status = Column(Boolean)
     hospital_id = Column(String, ForeignKey('hospitals.id'))
     hospital = relationship("Hospital", backref=backref('ambulances', order_by=id))
+
+class Files(Base):
+    __tablename__ = 'files'
+    id = Column(String, primary_key=True)
+    name = Column(String)
+    path = Column(String)
+    user_id = Column(String, ForeignKey('users.id'))
+    user = relationship("User", backref=backref('files', order_by=id))
     
 class Emergency(Base):
     __tablename__ = 'emergencies'
@@ -166,7 +174,7 @@ def update_contact(session, full_name, relation, phone_number, email, user_id):
 def hospital(session, location, phone_number, name):
     id = str(uuid.uuid4())
     hospita = Hospital(id=id, name=name, phone_number=phone_number, location=location)
-    session.add(contact)
+    session.add(hospita)
     session.commit()
     message = {"message":"Contact added successfully", "status":200}
     
