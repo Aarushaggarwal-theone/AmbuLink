@@ -11,14 +11,13 @@ class User(Base):
     user_name = Column(String)
     password = Column(String)
     
-    def __init__(self, id, email, user_name, password):
+    def __init__(self, id, email, password):
         self.id = id
         self.email = email
-        self.user_name = user_name
         self.password = password
     
     def __repr__(self):
-        return "<User(email='%s', username='%s', password='%s')>" % (
+        return "<User(email='%s', password='%s')>" % (
             self.email, self.username, self.password)
         
 engine = create_engine('sqlite:///db.db', echo=True)
@@ -29,3 +28,4 @@ Session = sessionmaker(bind=engine)
 
 session = Session()
 
+session.query(User).all()
