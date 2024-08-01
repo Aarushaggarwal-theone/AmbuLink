@@ -43,8 +43,10 @@ class Contacts(Base):
     user = relationship("User", backref=backref('contacts', order_by=id))
     
 class Hospital(Base):
+    
     __tablename__ = 'hospitals'
     id = Column(String, primary_key=True)
+    name = Column(String)
     location = Column(String)
     phone_number = Column(String)
     
@@ -160,3 +162,27 @@ def update_contact(session, full_name, relation, phone_number, email, user_id):
     return message
 
 #hospital
+
+def hospital(session, location, phone_number, name):
+    id = str(uuid.uuid4())
+    hospita = Hospital(id=id, name=name, phone_number=phone_number, location=location)
+    session.add(contact)
+    session.commit()
+    message = {"message":"Contact added successfully", "status":200}
+    
+def get_patient_info(session, user_id):
+    patients = session.query(Patient).filter(Patient.user_id==user_id).first()
+    return patients
+
+def update_patient_info(session, full_name, age, blood_type, allergies, weight, height, user_id):
+    patient = session.query(Patient).filter(Patient.user_id==user_id).first()
+    patient.full_name = full_name
+    patient.age = age
+    patient.blood_type = blood_type
+    patient.allergies = allergies
+    patient.weight = weight
+    patient.height = height
+    session.commit()
+    message = {"message":"Patient information updated successfully", "status":200}
+    return message
+

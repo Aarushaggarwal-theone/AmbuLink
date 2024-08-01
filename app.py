@@ -106,3 +106,7 @@ def fileupload():
         if file and not allowed_file(file.filename):
             flash('Invalid file type')
             return "Invalid file type"
+        
+@app.route('/app/profile', methods=['GET'])
+def profile():
+    return render_template('profile.html')
