@@ -4,6 +4,28 @@
   <h1>{% block title %}DASHBOARD{% endblock %}</h1>
 {% endblock %}
 
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Information Form</title>
+</head>
+<body>
+    <h1>Medical Information Form</h1>
+    <form action="/submit" method="post">
+        <div>
+            <label for="allergies">Medical Allergies:</label><br>
+            <textarea id="allergies" name="allergies" rows="4" cols="50" placeholder="List any medical allergies..."></textarea>
+        </div>
+        <br>
+        <div>
+            <label for="blood-test-reports">Blood Test Reports:</label><br>
+            <input type="file" id="blood-test-reports" name="blood-test-reports" accept=".pdf,.doc,.docx,.txt,.jpg,.png">
+        </div>
+        <br>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
 
 {% endblock %}
