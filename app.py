@@ -109,7 +109,7 @@ def fileupload():
             flash('Invalid file type')
             return "Invalid file type"
         
-@app.route('/app/profileupdate', methods=['GET', "POST"])
+@app.route('/app/profileupdate', methods=['GET'])
 def updateprofile():
     return render_template('profileupdate.html')
 
@@ -134,4 +134,26 @@ def profile():
 
 @app.route("/callambu", methods=["POST"])
 def call_ambu():
-    return "Ambulance called"
+    return render_template("callambu.html")
+
+@app.route("/hospitalregistry", methods=["GET"])
+def hospital_registry():
+    return render_template("hospitalregistry.html")
+
+@app.route("/hospitalregistry", methods=["POST"])
+def hospital_reistry():
+    if request.method=="POST":
+        location = request.form.get("location")
+        phone_number = request.form.get("phone_number")
+        name = request.form.get("name")
+
+        print(res)
+        return redirect(url_for('profile'))
+    
+@app.route("/icu", methods=["GET"])
+def icu():
+    return render_template("icu.html")
+
+@app.route("/app/ambulance/patients", methods=["GET"])
+def ambulance_patients():
+    return render_template("patients.html")
