@@ -21,3 +21,11 @@ class User(Base):
         return "<User(email='%s', username='%s', password='%s')>" % (
             self.email, self.username, self.password)
         
+engine = create_engine('sqlite:///db.db', echo=True)
+
+Base.metadata.create_all(bind=engine)
+
+Session = sessionmaker(bind=engine)
+
+session = Session()
+
