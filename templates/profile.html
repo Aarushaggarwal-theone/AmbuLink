@@ -3,12 +3,7 @@
 {% block header %}
   <h1>{% block title %}DASHBOARD{% endblock %}</h1>
 {% endblock %}
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Information Form</title>
-</head>
+{% block content %}
 <body>
     <h1>Medical Information Form</h1>
     <form action="/submit" method="post">
