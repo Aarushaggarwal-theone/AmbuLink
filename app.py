@@ -24,7 +24,13 @@ app.config['SECRET_KEY'] = "rvgkt3delm2bty4io3flejn2k;3kmoij[40t3rfl2jn4ek1;]"
 @app.route('/app', methods=['GET'])
 def appfunc():
     if request.cookies.get('session'):
-        return 'Hello, World!'
+        if request.cookie.get.mode == 'patient':
+            return render_template('patient.html')
+        elif request.cookie.get.mode == 'doctor':
+            return render_template('doctor.html')
+        elif request.cookie.get.mode == 'ambulance':
+            return render_template('ambulance.html')
+        
     return redirect(url_for('login'))
 
 @app.route('/home', methods=['GET'])
